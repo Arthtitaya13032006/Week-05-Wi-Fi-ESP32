@@ -33,7 +33,6 @@ WIFI_EVENT_STA_CONNECTED เกิดขึ้นก่อน เมื่อจ
 WIFI_EVENT_STA_DISCONNECTED เกิดขึ้นทีหลัง เมื่อเข้าสู่ Phase 4 (4-Way Handshake) แล้วระบบพบว่าถอดรหัสกุญแจไม่สำเร็จ (เพราะ Password ผิด) จึงทำการตัดการเชื่อมต่อ
 4. หากเครือข่าย Wi-Fi ไม่มี DHCP Server (ไม่มีการแจก IP อัตโนมัติ) ผลการทดลองในข้อ 5.4.1 จะหยุดอยู่ที่ขั้นตอนใด และจะไม่เกิด Event ใดขึ้น?
 > ขั้นตอนที่หยุด: จะหยุดอยู่ที่ Phase 5 (DHCP Phase / IP Assignment) เนื่องจาก ESP32 ส่งคำขอ IP ไปแล้วแต่ไม่มี Server ตอบกลับ
-
 Event ที่จะไม่เกิดขึ้น: IP_EVENT_STA_GOT_IP (ESP32 จะเกาะสัญญาณ Wi-Fi ได้ มีสถานะ Connected แต่จะไม่ได้รับ IP Address และไม่สามารถสื่อสารบนเครือข่าย TCP/IP ได้)
 
 ---
