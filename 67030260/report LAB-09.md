@@ -22,9 +22,18 @@
 ## 7. คำถามท้ายการทดลอง (Post-Lab Questions)
 
 1. **Association ID (AID)** คืออะไร มีบทบาทอย่างไรใน Phase 3 และส่งคืนมาในโครงสร้างข้อมูลตัวแปรใด?
+> AID คืออะไร: หมายเลขประจำตัว (16-bit ID) ที่ Router/AP ออกให้กับอุปกรณ์เพื่อระบุตัวตนในระดับ Link Layer
+> บทบาทใน Phase 3: ใช้ระบุช่องทางสื่อสาร, จัดคิวรับ-ส่งข้อมูล และบริหารจัดการระบบประหยัดพลังงาน (Power-Save / TIM)
+ตัวแปรที่ส่งคืน: เก็บอยู่ในสมาชิก aid ของโครงสร้างข้อมูล wifi_event_sta_connected_t
 2. เหตุใดการเชื่อมต่อ Wi-Fi ความปลอดภัยแบบ WPA2-PSK จึงสามารถผ่าน Phase 2 (Authentication) และ Phase 3 (Association) จนเกิด Event `WIFI_EVENT_STA_CONNECTED` ได้สำเร็จ แม้ผู้ใช้จะป้อนรหัสผ่าน (Password) ผิด?
+> สาเหตุ: Phase 2 (Authentication) และ Phase 3 (Association) ของมาตรฐาน WPA2-PSK เป็นเพียงการเกาะสัญญาณและจองสิทธิ์เชื่อมต่อเบื้องต้น โดยยังไม่มีการตรวจ Password
+Event WIFI_EVENT_STA_CONNECTED จึงเกิดขึ้นทันทีที่จบ Phase 3 ส่วนการตรวจสอบ Password จะเกิดขึ้นทีหลังใน Phase 4 (4-Way Handshake)
 3. หาก Router มีการตั้งค่า **MAC Address Filtering** (อนุญาตเฉพาะ MAC ที่ลงทะเบียน) ESP32 จะล้มเหลวในเฟสใด และจะส่ง Disconnect Reason Code ใดออกมา?
+> เฟสที่ล้มเหลว: ล้มเหลวใน Phase 2 (Authentication) หรือ Phase 3 (Association) เนื่องจาก AP จะตรวจสอบ MAC Address กับรายการอนุญาต (ACL) แล้วปฏิเสธคำขอทันที
+Reason Code: จะส่งคืนรหัสปฏิเสธ เช่น Reason Code 6 (WIFI_REASON_NOT_AUTHED), Reason Code 24 (WIFI_REASON_CONNECTION_FAIL) หรือ Reason Code 202 (WIFI_REASON_ASSOC_FAIL)
 4. สรุปความแตกต่างสำคัญระหว่างจุดสิ้นสุดของ **Phase 3 (Link-Layer Connected)** กับจุดสิ้นสุดของ **Phase 5 (IP Address Assigned)**
+> จุดสิ้นสุด Phase 3 (Link-Layer Connected): เชื่อมต่อสำเร็จในระดับกายภาพ/คลื่นวิทยุ (Layer 2) ได้ AID แล้ว แต่ ยังไม่มี IP Address จึงยังใช้อินเทอร์เน็ตหรือรับ-ส่งข้อมูล TCP/IP ไม่ได้
+จุดสิ้นสุด Phase 5 (IP Address Assigned): เชื่อมต่อสำเร็จในระดับเครือข่าย (Layer 3) ได้รับ IP Address จาก DHCP แล้ว พร้อมสำหรับใช้งานอินเทอร์เน็ต (ส่ง HTTP, MQTT, Socket) ได้สมบูรณ์
 
 ---
 ## ผลลัพธ์
