@@ -29,6 +29,7 @@
 3. ค่าระดับความแรงสัญญาณ (RSSI) ที่แสดงเป็นตัวเลขติดลบ (เช่น -45 dBm กับ -80 dBm) ค่าใดแสดงถึงสัญญาณที่มีความแรงและความเสถียรมากกว่ากัน?
 4. เหตุใดการดึงค่า `authmode` (`wifi_auth_mode_t`) จากโครงสร้าง `wifi_ap_record_t` จึงมีความสำคัญต่อการเตรียมการในเฟสถัดไป (Authentication & Association Phase)?
 ---
+## ผลลัพธ์
 ```
 I (27) boot: ESP-IDF v6.0.2-dirty 2nd stage bootloader
 I (27) boot: compile time Aug  3 2026 09:49:37
