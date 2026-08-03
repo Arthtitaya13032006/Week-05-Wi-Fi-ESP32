@@ -3,23 +3,20 @@
 
 ให้นักศึกษาบันทึกผลลัพธ์จากการสังเกตใน Serial Console ลงในตารางต่อไปนี้:
 
-### 6.1 ตารางสรุปเปรียบเทียบผลการทดลองในระดับ Link Layer
+## 6.1 ตารางสรุปเปรียบเทียบผลการทดลองในระดับ Link Layer
+| ข้อการทดลอง | สถานการณ์ทดสอบ                           | Event ที่ได้รับ | ผลการผูกสัมพันธ์ Link Layer | ค่า Association ID (AID) ที่ได้ | Reason Code (ถ้ามี) |
+| :---------: | :--------------------------------------- | :-------------: | :-------------------------: | :-----------------------------: | :------------------ |
+|  5.3.1  | ร้องขอ Auth & Assoc กับ AP มีอยู่จริง    | WIFI_EVENT_STA_CONNECTED | สำเร็จ (Success) | 34680 | - |
+|  5.3.2  | ร้องขอ Auth & Assoc กับ AP ไม่มีอยู่จริง | WIFI_EVENT_STA_DISCONNECTED | ล้มเหลว (Failed) | - | 201 / 0xC9 |
 
-| ข้อการทดลอง | สถานการณ์ทดสอบ | Event ที่ได้รับ | ผลการผูกสัมพันธ์ Link Layer | ค่า Association ID (AID) ที่ได้ | Reason Code (ถ้ามี) |
-| :---: | :--- | :---: | :---: | :---: | :--- |
-| **5.3.1** | ร้องขอ Auth & Assoc กับ AP มีอยู่จริง | | | | |
-| **5.3.2** | ร้องขอ Auth & Assoc กับ AP ไม่มีอยู่จริง | | | | |
-
-### 6.2 บันทึกข้อมูล Link Layer จาก Event `WIFI_EVENT_STA_CONNECTED` (ข้อ 5.3.1)
-
-| พารามิเตอร์ Link Layer | ค่าที่อ่านได้จริงจาก Forensic Log |
-| :--- | :--- |
-| **SSID** | |
-| **BSSID (MAC Address)** | |
-| **Channel** | |
-| **Auth Mode Enum** | |
-| **Association ID (AID)** | |
-
+## 6.2 บันทึกข้อมูล Link Layer จาก Event WIFI_EVENT_STA_CONNECTED (ข้อ 5.3.1)
+| พารามิเตอร์ Link Layer   | ค่าที่อ่านได้จริงจาก Forensic Log |
+| :----------------------- | :-------------------------------- |
+| SSID                 | Redmi Note 10S |
+| BSSID (MAC Address)  | 66:34:B4:F7:03:8A |
+| Channel              | 5 |
+| Auth Mode Enum       | 3 (WPA2_PSK) |
+| Association ID (AID) | 34680 |
 ---
 
 ## 7. คำถามท้ายการทดลอง (Post-Lab Questions)
